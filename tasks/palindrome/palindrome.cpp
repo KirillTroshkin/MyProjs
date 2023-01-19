@@ -1,7 +1,7 @@
 #include "palindrome.h"
 
 bool IsPalindrome(const std::string& str) {
-    std::string checker = "";
+    std::string checker;
     for (int i = 0; i < str.size(); ++i) {
         if (str[i] != ' ') {
             checker += str[i];
