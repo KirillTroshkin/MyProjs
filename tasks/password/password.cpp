@@ -1,6 +1,5 @@
-#include "password.h"
-
 #include <cctype>
+#include "password.h"
 
 const size_t MIN_POSSIBLE_LENGTH = 8;
 const size_t MAX_POSSIBLE_LENGTH = 14;
