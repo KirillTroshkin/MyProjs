@@ -1,11 +1,12 @@
-#include <cctype>
 #include "password.h"
 
-constexpr int EIGHT = 8;
-constexpr int FOURTEEN = 14;
+#include <cctype>
+
+const size_t MIN_POSSIBLE_LENGTH = 8;
+const size_t MAX_POSSIBLE_LENGTH = 14;
 
 bool ValidatePassword(const std::string& password) {
-    if (password.size() < EIGHT || password.size() > FOURTEEN) {
+    if (password.size() < MIN_POSSIBLE_LENGTH || password.size() > MAX_POSSIBLE_LENGTH) {
         return false;
     }
     int having_uppercase = 0;
