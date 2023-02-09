@@ -15,7 +15,7 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     std::map<StudentName, std::map<TaskName, TaskInf>> checking_results;
     std::map<StudentName, std::set<TaskName>> results;
     Events sorted_events;
-    for (const auto& event : events) {
+    for (auto event : events) {
         sorted_events.push_back(event);
     }
     sort(sorted_events.begin(), sorted_events.end(), TimeComp);
