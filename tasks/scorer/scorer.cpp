@@ -31,9 +31,9 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
         } else if ((*it).event_type == EventType::CheckSuccess) {
             (checking_results[(*it).student_name])[(*it).task_name].checking_approved = true;
         } else if ((*it).event_type == EventType::MergeRequestOpen) {
-            (checking_results[(*it).student_name])[(*it).task_name].checking_approved = false;
+            (checking_results[(*it).student_name])[(*it).task_name].request_merged = false;
         } else if ((*it).event_type == EventType::MergeRequestClosed) {
-            (checking_results[(*it).student_name])[(*it).task_name].checking_approved = true;
+            (checking_results[(*it).student_name])[(*it).task_name].request_merged = true;
         }
     }
     for (auto it_students = checking_results.begin(); it_students != checking_results.end(); ++it_students) {
