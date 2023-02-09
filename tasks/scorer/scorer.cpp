@@ -15,17 +15,19 @@ ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
     std::map<StudentName, std::map<TaskName, TaskInf>> checking_results;
     std::map<StudentName, std::set<TaskName>> results;
     Events sorted_events;
-    for (auto event : events) {
-        sorted_events.push_back(event);
+    for (const auto& event : events) {
+        if (event.time <= score_time) {
+            sorted_events.push_back(event);
+        }
     }
     sort(sorted_events.begin(), sorted_events.end(), TimeComp);
-    for (auto it = sorted_events.begin(); ((*it).time <= score_time) && (it != sorted_events.end()); ++it) {
+    for (auto it = sorted_events.begin(); it != sorted_events.end(); ++it) {
         TaskInf checking_task;
         checking_task.studentname = (*it).student_name;
         checking_task.taskname = (*it).task_name;
         (checking_results[(*it).student_name])[(*it).task_name] = checking_task;
     }
-    for (auto it = sorted_events.begin(); ((*it).time <= score_time) && (it != sorted_events.end()); ++it) {
+    for (auto it = sorted_events.begin(); it != sorted_events.end(); ++it) {
         if ((*it).event_type == EventType::CheckFailed) {
             (checking_results[(*it).student_name])[(*it).task_name].checking_approved = false;
         } else if ((*it).event_type == EventType::CheckSuccess) {
