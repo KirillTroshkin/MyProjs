@@ -43,17 +43,17 @@ AdmissionTable FillUniversities(const std::vector<University>& universities, con
         sorted_applicants.emplace_back(&applicant);
     }
     sort(sorted_applicants.begin(), sorted_applicants.end(), ComparatorWithPoints);
-    for (auto it_stud = sorted_applicants.begin(); it_stud != sorted_applicants.end(); ++it_stud) {
-        for (auto it_univ = (*it_stud)->wish_list.begin(); it_univ != (*it_stud)->wish_list.end(); ++it_univ) {
-            if (universities_number[*(it_univ)] >= 1) {
-                admission_results[*(it_univ)].push_back(&(*it_stud)->student);
-                --universities_number[*(it_univ)];
+    for (auto stud : sorted_applicants) {
+        for (const auto& univ : stud->wish_list) {
+            if (universities_number[univ] >= 1) {
+                admission_results[univ].push_back(&stud->student);
+                --universities_number[univ];
                 break;
             }
         }
     }
-    for (auto it_map = admission_results.begin(); it_map != admission_results.end(); ++it_map) {
-        sort(it_map->second.begin(), it_map->second.end(), ComparatorInAlphabet);
+    for (auto sort_list : admission_results) {
+        sort(sort_list.second.begin(), sort_list.second.end(), ComparatorInAlphabet);
     }
     return admission_results;
 }
