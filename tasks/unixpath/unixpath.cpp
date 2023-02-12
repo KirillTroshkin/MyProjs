@@ -34,7 +34,13 @@ std::string NormalizePath(std::string_view current_working_dir, std::string_view
     std::string normalizedpath;
     std::vector<std::string_view> vector_of_words;
     for (auto word : Splitted(current_working_dir)) {
-        vector_of_words.push_back(word);
+        if (word == static_cast<std::string_view>("..")) {
+            if (!vector_of_words.empty()) {
+                vector_of_words.pop_back();
+            }
+        } else if (word != static_cast<std::string_view>(".")) {
+            vector_of_words.push_back(word);
+        }
     }
     for (auto word : Splitted(path)) {
         if (word == static_cast<std::string_view>("..")) {
