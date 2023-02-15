@@ -19,7 +19,7 @@ std::vector<std::string_view> SplittedIntoStrings(std::string_view s) {
             }
             divider = s.find('\n', divider + 1);
         }
-        if (!s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1).empty()) {
+        if (!s.substr(divider + 1, s.size() - divider - 1).empty()) {
             splitted_str.emplace_back(s.substr(divider + 1, s.size() - divider - 1));
         }
         return splitted_str;
@@ -156,7 +156,6 @@ std::vector<std::string_view> Search(std::string_view text, std::string_view que
         double relevance = 0.0;
         Searchstring searchstr;
         searchstr.str = st;
-        vec_for_searchstr.emplace_back(searchstr);
         for (auto wqu : vec_of_qwords) {
             relevance += Tf(vec_of_stwords, wqu) * Idf(vec_of_strings, wqu);
         }
