@@ -1,6 +1,7 @@
 #include "search.h"
 #include <cmath>
 #include <string>
+#include <set>
 
 const int DIFFERENCE_IN_CHARS = 32;
 
@@ -150,13 +151,17 @@ std::vector<std::string_view> Search(std::string_view text, std::string_view que
     std::vector<std::string_view> most_relevant_docs;
     std::vector<std::string_view> vec_of_strings = SplittedIntoStrings(text);
     std::vector<std::string_view> vec_of_qwords = SplittedIntoWords(query);
+    std::set<std::string_view> set_of_qwords;
     std::vector<Searchstring> vec_for_searchstr;
+    for (auto qw : vec_of_qwords) {
+        set_of_qwords.insert(qw);
+    }
     for (auto st : vec_of_strings) {
         std::vector<std::string_view> vec_of_stwords = SplittedIntoWords(st);
         double relevance = 0.0;
         Searchstring searchstr;
         searchstr.str = st;
-        for (auto wqu : vec_of_qwords) {
+        for (auto wqu : set_of_qwords) {
             relevance += Tf(vec_of_stwords, wqu) * Idf(vec_of_strings, wqu);
         }
         searchstr.relev = relevance;
