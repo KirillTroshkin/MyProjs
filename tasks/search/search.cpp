@@ -2,7 +2,6 @@
 #include <cmath>
 #include <string>
 
-
 const int DIFFERENCE_IN_CHARS = 32;
 
 struct Searchstring {
@@ -20,7 +19,7 @@ std::vector<std::string_view> SplittedIntoStrings(std::string_view s) {
             }
             divider = s.find('\n', divider + 1);
         }
-        if (!s.substr(divider + 1, s.find('\n', divider + 1)  - divider - 1).empty()) {
+        if (!s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1).empty()) {
             splitted_str.emplace_back(s.substr(divider + 1, s.size() - divider - 1));
         }
         return splitted_str;
