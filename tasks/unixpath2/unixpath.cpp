@@ -57,31 +57,31 @@ std::string UnixPath::NormalizePath(std::vector<std::string_view> path) const {
 }
 
 UnixPath::UnixPath(std::string_view initial_dir) {
-    start_path = Splitted(initial_dir);
-    current_dir = start_path;
+    start_path_ = Splitted(initial_dir);
+    current_dir_ = start_path_;
 }
 
 void UnixPath::ChangeDirectory(std::string_view path) {
     if (path == "..") {
-        if (!current_dir.empty()) {
-            current_dir.pop_back();
+        if (!current_dir_.empty()) {
+            current_dir_.pop_back();
         }
     }
     if (path != "." and path != "..") {
-        current_dir = Splitted(path);
+        current_dir_ = Splitted(path);
     }
 }
 
 std::string UnixPath::GetAbsolutePath() const {
-    return NormalizePath(current_dir);
+    return NormalizePath(current_dir_);
 }
 
 std::string UnixPath::GetRelativePath() const {
     std::string normalizedpath;
     size_t i = 0;
-    std::string current_str = NormalizePath(current_dir);
+    std::string current_str = NormalizePath(current_dir_);
     std::vector current_dir_norm = Splitted(current_str);
-    std::string start_str = NormalizePath(start_path);
+    std::string start_str = NormalizePath(start_path_);
     std::vector start_path_norm = Splitted(start_str);
     while (i < std::min(current_dir_norm.size(), start_path_norm.size()) && current_dir_norm[i] == start_path_norm[i]) {
         ++i;
