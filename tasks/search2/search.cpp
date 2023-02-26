@@ -139,7 +139,9 @@ double SearchEngine::Idf(std::vector<std::string_view> vdoc, std::string_view s)
 }
 
 void SearchEngine::BuildIndex(std::string_view text) {
-    SearchEngine::vec_of_strings_ = SplittedIntoStrings(text);
+    string_to_vec_.clear();
+    number_of_words_.clear();
+    vec_of_strings_ = SplittedIntoStrings(text);
     number_of_docs_ = vec_of_strings_.size();
     for (auto st : vec_of_strings_) {
         std::vector<std::string_view> vec_of_stwords = SplittedIntoWords(st);
