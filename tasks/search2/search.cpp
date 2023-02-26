@@ -150,6 +150,9 @@ void SearchEngine::BuildIndex(std::string_view text) {
 
 std::vector<std::string_view> SearchEngine::Search(std::string_view query, size_t results_count) const {
     std::vector<std::string_view> most_relevant_docs;
+    if (vec_of_strings_.empty()) {
+        return {};
+    }
     std::vector<std::string_view> vec_of_qwords = SplittedIntoWords(query);
     std::set<std::string_view> set_of_qwords;
     std::vector<Searchstring> vec_for_searchstr;
