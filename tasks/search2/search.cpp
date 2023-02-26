@@ -7,30 +7,16 @@ const int DIFFERENCE_IN_CHARS = 32;
 
 std::vector<std::string_view> SearchEngine::SplittedIntoStrings(std::string_view s) const {
     std::vector<std::string_view> splitted_str;
-    if (s[0] == '\n') {
-        size_t divider = 0;
-        while (s.find('\n', divider + 1) != std::string::npos) {
-            if (!s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1).empty()) {
-                splitted_str.emplace_back(s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1));
-            }
-            divider = s.find('\n', divider + 1);
-        }
-        if (!s.substr(divider + 1, s.size() - divider - 1).empty()) {
-            splitted_str.emplace_back(s.substr(divider + 1, s.size() - divider - 1));
-        }
-        return splitted_str;
+    if (s.find('\n') != 0) {
+        splitted_str.emplace_back(s.substr(0, s.find('\n')));
     }
-    splitted_str.emplace_back(s.substr(0, s.find('\n')));
     size_t divider = s.find('\n');
     if (divider != std::string::npos) {
-        while (s.find('\n', divider + 1) != std::string::npos) {
-            if (!s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1).empty()) {
-                splitted_str.emplace_back(s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1));
+        while (divider != std::string::npos) {
+            if (divider + 1 != s.find('\n', divider + 1)) {
+                splitted_str.emplace_back(s.substr(divider + 1, s.find('\n', divider + 1) - (divider + 1)));
             }
             divider = s.find('\n', divider + 1);
-        }
-        if (!s.substr(divider + 1, s.find('\n', divider + 1) - divider - 1).empty()) {
-            splitted_str.emplace_back(s.substr(divider + 1, s.size() - divider - 1));
         }
     }
     return splitted_str;
@@ -38,34 +24,13 @@ std::vector<std::string_view> SearchEngine::SplittedIntoStrings(std::string_view
 
 std::vector<std::string_view> SearchEngine::SplittedIntoWords(std::string_view s) const {
     std::vector<std::string_view> splitted_str;
-    if (!isalpha(s[0])) {
-        size_t divider1 = 0;
-        size_t divider2 = 1;
-        while (divider2 < s.size() && isalpha(s[divider2])) {
-            ++divider2;
-        }
-        while (divider2 < s.size()) {
-            if (!s.substr(divider1 + 1, divider2 - divider1 - 1).empty()) {
-                splitted_str.emplace_back(s.substr(divider1 + 1, divider2 - divider1 - 1));
-            }
-            divider1 = divider2;
-            if (divider2 < s.size()) {
-                ++divider2;
-            }
-            while (divider2 < s.size() && isalpha(s[divider2])) {
-                ++divider2;
-            }
-        }
-        if (!s.substr(divider1 + 1, s.size() - divider1 - 1).empty()) {
-            splitted_str.emplace_back(s.substr(divider1 + 1, s.size() - divider1 - 1));
-        }
-        return splitted_str;
-    }
     size_t divider2 = 0;
     while (divider2 < s.size() && isalpha(s[divider2])) {
         ++divider2;
     }
-    splitted_str.emplace_back(s.substr(0, divider2));
+    if (divider2 != 0) {
+        splitted_str.emplace_back(s.substr(0, divider2));
+    }
     size_t divider1 = divider2;
     if (divider1 < s.size()) {
         ++divider2;
@@ -73,8 +38,8 @@ std::vector<std::string_view> SearchEngine::SplittedIntoWords(std::string_view s
             ++divider2;
         }
         while (divider2 < s.size()) {
-            if (!s.substr(divider1 + 1, divider2 - divider1 - 1).empty()) {
-                splitted_str.emplace_back(s.substr(divider1 + 1, divider2 - divider1 - 1));
+            if (divider2 != divider1 + 1) {
+                splitted_str.emplace_back(s.substr(divider1 + 1, divider2 - (divider1 + 1)));
             }
             divider1 = divider2;
             ++divider2;
@@ -82,8 +47,8 @@ std::vector<std::string_view> SearchEngine::SplittedIntoWords(std::string_view s
                 ++divider2;
             }
         }
-        if (!s.substr(divider1 + 1, s.size() - divider1 - 1).empty()) {
-            splitted_str.emplace_back(s.substr(divider1 + 1, s.size() - divider1 - 1));
+        if (divider1 + 1 != s.size()) {
+            splitted_str.emplace_back(s.substr(divider1 + 1, s.size() - (divider1 + 1)));
         }
     }
     return splitted_str;
@@ -168,7 +133,7 @@ std::vector<std::string_view> SearchEngine::Search(std::string_view query, size_
         }
     }
     sort(vec_for_searchstr.begin(), vec_for_searchstr.end(), Cmp);
-    for (size_t i = 0; i < vec_for_searchstr.size() && i < results_count; ++i) {
+    for (size_t i = 0; i < std::min(vec_for_searchstr.size(), results_count); ++i) {
         most_relevant_docs.emplace_back(vec_for_searchstr[i].str);
     }
     return most_relevant_docs;
