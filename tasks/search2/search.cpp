@@ -108,14 +108,14 @@ bool SearchEngine::Equality(std::string_view s1, std::string_view s2) const {
     return true;
 }
 
-double SearchEngine::Tf(std::string_view st, std::string_view s) const {
+double SearchEngine::Tf(std::vector<std::string_view> vecst, std::string_view s) const {
     int64_t number_of_equal_words = 0;
-    for (auto wdocst : string_to_vec_.at(st)) {
+    for (auto wdocst : vecst) {
         if (Equality(wdocst, s)) {
             ++number_of_equal_words;
         }
     }
-    return static_cast<double>(number_of_equal_words) / static_cast<double>(number_of_words_.at(st));
+    return static_cast<double>(number_of_equal_words) / static_cast<double>(vecst.size());
 }
 
 bool SearchEngine::IsInTheString(std::vector<std::string_view> vdocst, std::string_view s) const {
@@ -140,13 +140,11 @@ double SearchEngine::Idf(std::string_view s) const {
 
 void SearchEngine::BuildIndex(std::string_view text) {
     string_to_vec_.clear();
-    number_of_words_.clear();
     vec_of_strings_ = SplittedIntoStrings(text);
     number_of_docs_ = vec_of_strings_.size();
     for (auto st : vec_of_strings_) {
         std::vector<std::string_view> vec_of_stwords = SplittedIntoWords(st);
         string_to_vec_[st] = vec_of_stwords;
-        number_of_words_[st] = vec_of_stwords.size();
     }
 }
 
@@ -166,7 +164,7 @@ std::vector<std::string_view> SearchEngine::Search(std::string_view query, size_
         Searchstring searchstr;
         searchstr.str = stpair.first;
         for (auto wqu : set_of_qwords) {
-            relevance += Tf(stpair.first, wqu) * Idf(wqu);
+            relevance += Tf(stpair.second, wqu) * Idf(wqu);
         }
         searchstr.relev = relevance;
         if (searchstr.relev > 0) {
