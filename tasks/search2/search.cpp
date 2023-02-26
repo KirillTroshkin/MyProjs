@@ -127,9 +127,9 @@ bool SearchEngine::IsInTheString(std::vector<std::string_view> vdocst, std::stri
     return false;
 }
 
-double SearchEngine::Idf(std::vector<std::string_view> vdoc, std::string_view s) const {
+double SearchEngine::Idf(std::string_view s) const {
     size_t counter_of_containing = 0;
-    for (auto stdoc : vdoc) {
+    for (auto stdoc : vec_of_strings_) {
         std::vector<std::string_view> vecofwords = SplittedIntoWords(stdoc);
         if (IsInTheString(vecofwords, s)) {
             ++counter_of_containing;
@@ -166,7 +166,7 @@ std::vector<std::string_view> SearchEngine::Search(std::string_view query, size_
         Searchstring searchstr;
         searchstr.str = stpair.first;
         for (auto wqu : set_of_qwords) {
-            relevance += Tf(stpair.first, wqu) * Idf(vec_of_strings_, wqu);
+            relevance += Tf(stpair.first, wqu) * Idf(wqu);
         }
         searchstr.relev = relevance;
         if (searchstr.relev > 0) {

@@ -24,7 +24,7 @@ private:
     bool Equality(std::string_view s1, std::string_view s2) const;
     double Tf(std::string_view st, std::string_view s) const;
     bool IsInTheString(std::vector<std::string_view> vdocst, std::string_view s) const;
-    double Idf(std::vector<std::string_view> vdoc, std::string_view s) const;
+    double Idf(std::string_view s) const;
     static bool Cmp(const Searchstring& sr1, const Searchstring& sr2) {
         return sr1.relev > sr2.relev;
     };
