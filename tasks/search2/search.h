@@ -17,7 +17,6 @@ public:
 private:
     size_t number_of_docs_;
     std::vector<std::string_view> vec_of_strings_;
-    std::unordered_map<std::string_view, std::vector<std::string_view>> string_to_vec_;
     std::vector<std::string_view> SplittedIntoStrings(std::string_view s) const;
     std::vector<std::string_view> SplittedIntoWords(std::string_view s) const;
     bool Equality(std::string_view s1, std::string_view s2) const;

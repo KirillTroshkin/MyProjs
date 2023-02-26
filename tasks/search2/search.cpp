@@ -139,13 +139,8 @@ double SearchEngine::Idf(std::string_view s) const {
 }
 
 void SearchEngine::BuildIndex(std::string_view text) {
-    string_to_vec_.clear();
     vec_of_strings_ = SplittedIntoStrings(text);
     number_of_docs_ = vec_of_strings_.size();
-    for (auto st : vec_of_strings_) {
-        std::vector<std::string_view> vec_of_stwords = SplittedIntoWords(st);
-        string_to_vec_[st] = vec_of_stwords;
-    }
 }
 
 std::vector<std::string_view> SearchEngine::Search(std::string_view query, size_t results_count) const {
@@ -159,12 +154,13 @@ std::vector<std::string_view> SearchEngine::Search(std::string_view query, size_
     for (auto qw : vec_of_qwords) {
         set_of_qwords.insert(qw);
     }
-    for (const auto& stpair : string_to_vec_) {
+    for (auto st : vec_of_strings_) {
+        std::vector<std::string_view> vec_of_stwords = SplittedIntoWords(st);
         double relevance = 0.0;
         Searchstring searchstr;
-        searchstr.str = stpair.first;
+        searchstr.str = st;
         for (auto wqu : set_of_qwords) {
-            relevance += Tf(stpair.second, wqu) * Idf(wqu);
+            relevance += Tf(vec_of_stwords, wqu) * Idf(wqu);
         }
         searchstr.relev = relevance;
         if (searchstr.relev > 0) {
