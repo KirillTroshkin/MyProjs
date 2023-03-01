@@ -35,8 +35,8 @@ public:
     RenderedField RenderField() const;
 
 private:
-    std::vector<char> min_inside_;
-    std::vector<char> field_now_;
+    std::vector<int> min_inside_;
+    std::vector<int> field_now_;
     GameStatus gamestatus_ = GameStatus::NOT_STARTED;
     size_t fwidth_ = 0;
     size_t fheight_ = 0;
