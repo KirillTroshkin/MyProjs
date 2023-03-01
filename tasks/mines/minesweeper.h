@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 class Minesweeper {
@@ -32,4 +33,19 @@ public:
     time_t GetGameTime() const;
 
     RenderedField RenderField() const;
+
+private:
+    std::vector<char> min_inside_;
+    std::vector<char> field_now_;
+    GameStatus gamestatus_ = GameStatus::NOT_STARTED;
+    size_t fwidth_ = 0;
+    size_t fheight_ = 0;
+    size_t prizenumber_ = 0;
+    void Initialize(size_t width, size_t height, size_t mines_count);
+    void Initialize(size_t width, size_t height, const std::vector<Cell>& cells_with_mines);
+    int MinesCounter(size_t i);
+    bool clicked_ = false;
+    time_t start_;
+    time_t over_;
+    std::unordered_set<size_t> were_in_bfs_;
 };
