@@ -249,11 +249,13 @@ void Minesweeper::OpenCell(const Cell& cell) {
                         bfs.push(bfs.front() + fwidth_);
                     }
                     if (fwidth_ > 1 && bfs.front() % fwidth_ != 0 &&
-                        were_in_bfs_.find(bfs.front() - 1) == were_in_bfs_.end() && field_now_[bfs.front() - 1] != '?') {
+                        were_in_bfs_.find(bfs.front() - 1) == were_in_bfs_.end() &&
+                        field_now_[bfs.front() - 1] != '?') {
                         bfs.push(bfs.front() - 1);
                     }
                     if (fwidth_ > 1 && bfs.front() % fwidth_ != (fwidth_ - 1) &&
-                        were_in_bfs_.find(bfs.front() + 1) == were_in_bfs_.end() && field_now_[bfs.front() + 1] != '?') {
+                        were_in_bfs_.find(bfs.front() + 1) == were_in_bfs_.end() &&
+                        field_now_[bfs.front() + 1] != '?') {
                         bfs.push(bfs.front() + 1);
                     }
                     if (fheight_ > 1 && fwidth_ > 1 && bfs.front() / fwidth_ != 0 && bfs.front() % fwidth_ != 0 &&
@@ -274,7 +276,8 @@ void Minesweeper::OpenCell(const Cell& cell) {
                         bfs.push(bfs.front() + fwidth_ + 1);
                     }
                     if (fheight_ > 1 && fwidth_ > 1 && bfs.front() / fwidth_ != (fheight_ - 1) &&
-                        bfs.front() % fwidth_ != 0 && were_in_bfs_.find(bfs.front() + fwidth_ - 1) == were_in_bfs_.end() &&
+                        bfs.front() % fwidth_ != 0 &&
+                        were_in_bfs_.find(bfs.front() + fwidth_ - 1) == were_in_bfs_.end() &&
                         field_now_[bfs.front() + fwidth_ - 1] != '?') {
                         bfs.push(bfs.front() + fwidth_ - 1);
                     }
