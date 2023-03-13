@@ -18,6 +18,7 @@ public:
     void operator+=(const Poly& other);
     void operator-=(const Poly& other);
     Poly operator*(const Poly& other) const;
+    void operator*=(const Poly& other);
     friend Poly operator-(const Poly& p);
     friend std::ostream& operator<<(std::ostream& o, const Poly& p);
 

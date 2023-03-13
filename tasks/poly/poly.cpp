@@ -88,6 +88,19 @@ Poly Poly::operator*(const Poly& other) const {
     return prod;
 }
 
+void Poly::operator*=(const Poly& other) {
+    for (auto [deg_this, coef_this] : poly_ins_) {
+        for (auto [deg_other, coef_other] : other.poly_ins_) {
+            poly_ins_[deg_this + deg_other] += coef_this * coef_other;
+        }
+    }
+    for (auto [deg, coef] : poly_ins_) {
+        if (coef == 0) {
+            poly_ins_.erase(poly_ins_.find(deg));
+        }
+    }
+}
+
 Poly operator-(const Poly& p) {
     Poly opp = p;
     for (auto [deg, coef] : opp.poly_ins_) {
