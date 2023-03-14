@@ -21,6 +21,14 @@ int64_t Poly::operator()(const int64_t x) const {
     return result;
 }
 
+void Poly::EraseZeros() {
+    for (auto [deg, coef] : poly_ins_) {
+        if (coef == 0) {
+            poly_ins_.erase(deg);
+        }
+    }
+}
+
 bool Poly::operator==(const Poly& other) const {
     return poly_ins_ == other.poly_ins_;
 }
@@ -37,10 +45,8 @@ Poly Poly::operator+(const Poly& other) const {
     Poly sum = *this;
     for (auto [deg, coef] : other.poly_ins_) {
         sum.poly_ins_[deg] += coef;
-        if (sum.poly_ins_[deg] == 0) {
-            sum.poly_ins_.erase(sum.poly_ins_.find(deg));
-        }
     }
+    sum.EraseZeros();
     return sum;
 }
 
@@ -48,29 +54,23 @@ Poly Poly::operator-(const Poly& other) const {
     Poly diff = *this;
     for (auto [deg, coef] : other.poly_ins_) {
         diff.poly_ins_[deg] -= coef;
-        if (diff.poly_ins_[deg] == 0) {
-            diff.poly_ins_.erase(diff.poly_ins_.find(deg));
-        }
     }
+    diff.EraseZeros();
     return diff;
 }
 
 void Poly::operator+=(const Poly& other) {
     for (auto [deg, coef] : other.poly_ins_) {
         poly_ins_[deg] += coef;
-        if (poly_ins_[deg] == 0) {
-            poly_ins_.erase(poly_ins_.find(deg));
-        }
     }
+    EraseZeros();
 }
 
 void Poly::operator-=(const Poly& other) {
     for (auto [deg, coef] : other.poly_ins_) {
         poly_ins_[deg] -= coef;
-        if (poly_ins_[deg] == 0) {
-            poly_ins_.erase(poly_ins_.find(deg));
-        }
     }
+    EraseZeros();
 }
 
 Poly Poly::operator*(const Poly& other) const {
@@ -80,11 +80,7 @@ Poly Poly::operator*(const Poly& other) const {
             prod.poly_ins_[deg_this + deg_other] += coef_this * coef_other;
         }
     }
-    for (auto [deg, coef] : poly_ins_) {
-        if (coef == 0) {
-            prod.poly_ins_.erase(poly_ins_.find(deg));
-        }
-    }
+    prod.EraseZeros();
     return prod;
 }
 
@@ -94,11 +90,7 @@ void Poly::operator*=(const Poly& other) {
             poly_ins_[deg_this + deg_other] += coef_this * coef_other;
         }
     }
-    for (auto [deg, coef] : poly_ins_) {
-        if (coef == 0) {
-            poly_ins_.erase(poly_ins_.find(deg));
-        }
-    }
+    EraseZeros();
 }
 
 Poly operator-(const Poly& p) {

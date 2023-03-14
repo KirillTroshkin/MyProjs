@@ -24,6 +24,7 @@ public:
 
 private:
     std::map<const size_t, int64_t, std::greater<const size_t>> poly_ins_;
+    void EraseZeros();
 };
 
 Poly operator-(const Poly& p);
