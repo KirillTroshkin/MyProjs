@@ -85,11 +85,13 @@ Poly Poly::operator*(const Poly& other) const {
 }
 
 void Poly::operator*=(const Poly& other) {
+    Poly prod;
     for (auto [deg_this, coef_this] : poly_ins_) {
         for (auto [deg_other, coef_other] : other.poly_ins_) {
-            poly_ins_[deg_this + deg_other] += coef_this * coef_other;
+            prod.poly_ins_[deg_this + deg_other] += coef_this * coef_other;
         }
     }
+    *this = prod;
     EraseZeros();
 }
 

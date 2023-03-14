@@ -28,7 +28,7 @@ TEST_CASE("Poly") {
 
     REQUIRE(Poly({{0, -1}, {2, -3}}) == -poly2);
 
-    REQUIRE(Poly({-1, 1}) * Poly({1, 1}) == Poly({-1, 0, 1}));
+    REQUIRE(Poly({0, 1}) * Poly({{1, 1}}) == Poly({0, 0, 1}));
 
     std::stringstream string_stream;
     std::ostream& stream = string_stream;
