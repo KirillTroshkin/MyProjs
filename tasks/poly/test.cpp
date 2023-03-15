@@ -28,6 +28,8 @@ TEST_CASE("Poly") {
 
     REQUIRE(Poly({{0, -1}, {2, -3}}) == -poly2);
 
+    REQUIRE(Poly({0, 1}) * Poly({{1, 1}}) == Poly({0, 0, 1}));
+
     std::stringstream string_stream;
     std::ostream& stream = string_stream;
     stream << poly1 << ", " << poly0 << ", " << -poly1;
@@ -39,10 +41,9 @@ TEST_CASE("Poly") {
     poly3 = poly1;
     REQUIRE(poly1 == poly3);
 
-    Poly poly4{{2, 1}};       // y = x^2
+    Poly poly4{{2, 1}};  // y = x^2
     std::stringstream string_stream2;
     std::ostream& stream2 = string_stream2;
     stream2 << poly4;
     REQUIRE("y = 1x^2" == string_stream2.str());
-
 }
