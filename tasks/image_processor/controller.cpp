@@ -5,6 +5,7 @@
 #include "Grayscale.h"
 #include "negative.h"
 #include "sharpening.h"
+#include "MyFilter.h"
 
 std::vector<std::shared_ptr<Filter>> CreateFilters(const std::vector<FilterParsed>& filters_parsed) {
     std::vector<std::shared_ptr<Filter>> filters;
@@ -39,6 +40,9 @@ std::vector<std::shared_ptr<Filter>> CreateFilters(const std::vector<FilterParse
                 continue;
             }
             filters.push_back(std::make_shared<EdgeDetection>(threshold));
+        }
+        if (parsed.name == "mine") {
+            filters.push_back(std::make_shared<MyFilter>());
         }
     }
     return filters;
