@@ -1,7 +1,7 @@
 #include <iostream>
 #include "controller.h"
 #include "crop.h"
-#include "edge detection.h"
+#include "edge_detection.h"
 #include "Grayscale.h"
 #include "negative.h"
 #include "sharpening.h"
