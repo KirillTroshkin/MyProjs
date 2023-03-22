@@ -1,6 +1,6 @@
 #include "edge_detection.h"
 
-Image EdgeDetection::Change(Image &image) {
+Image EdgeDetection::Change(Image& image) {
     Grayscale g;
     image = g.Change(image);
     FilterWithMatrix f({{0, -1, 0}, {-1, 4, -1}, {0, -1, 0}});

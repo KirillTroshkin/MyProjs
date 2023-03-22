@@ -3,7 +3,7 @@
 Crop::Crop(size_t height, size_t width) : heightc_(height), widthc_(width) {
 }
 
-Image Crop::Change(Image &image) {
+Image Crop::Change(Image& image) {
     if (heightc_ < image.colors_.size()) {
         image.colors_.resize(heightc_);
         image.ih_.height = heightc_;

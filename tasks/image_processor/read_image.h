@@ -4,4 +4,4 @@
 #include "image.h"
 #include <string>
 
-Image ReadImage(std::string& file_path);
+Image ReadImage(const std::string& file_path);

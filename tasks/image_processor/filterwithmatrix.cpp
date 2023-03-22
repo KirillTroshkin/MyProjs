@@ -6,7 +6,7 @@ FilterWithMatrix::FilterWithMatrix(std::vector<std::vector<int64_t>> matrix, dou
     : matrix_(matrix), threshold_(threshold) {
 }
 
-Color FilterWithMatrix::TheNearest(Image &image, int64_t j, int64_t i) {
+Color FilterWithMatrix::TheNearest(const Image& image, int64_t j, int64_t i) {
     if (i < 0) {
         if (j < 0) {
             return image.colors_[0][0];
@@ -34,7 +34,7 @@ Color FilterWithMatrix::TheNearest(Image &image, int64_t j, int64_t i) {
     return image.colors_[j][i];
 }
 
-Image FilterWithMatrix::Change(Image &image) {
+Image FilterWithMatrix::Change(Image& image) {
     std::vector<std::vector<Color>> colors2(image.colors_.size());
     for (size_t i = 0; i < colors2.size(); ++i) {
         colors2[i].resize(image.colors_[0].size());

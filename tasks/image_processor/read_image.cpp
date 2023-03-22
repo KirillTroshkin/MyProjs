@@ -2,7 +2,7 @@
 #include <fstream>
 #include <limits>
 
-Image ReadImage(std::string &file_path) {
+Image ReadImage(const std::string &file_path) {
     std::ifstream bmp(file_path, std::ios::binary);
     BitMapHeader bmh;
     bmp.read(reinterpret_cast<char *>(&bmh), sizeof(BitMapHeader));

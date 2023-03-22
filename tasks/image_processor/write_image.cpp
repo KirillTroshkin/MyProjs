@@ -3,7 +3,7 @@
 
 #include <fstream>
 
-void WriteImage(Image &img, std::string &file_path) {
+void WriteImage(Image &img, const std::string &file_path) {
     std::ofstream bmpout(file_path, std::ios::binary);
     bmpout.write(reinterpret_cast<char *>(&img.bmh_), sizeof(BitMapHeader));
     bmpout.write(reinterpret_cast<char *>(&img.ih_), sizeof(InfoHeader));
