@@ -44,6 +44,11 @@ When processing pixels close to the edge of the image, part of the matrix may ex
 
 ### The list of the filters:
 
+The picture: 
+
+![image](https://user-images.githubusercontent.com/129896942/230489934-6b4ff9a9-bac1-42ad-8d97-4f0ff67a2754.png)
+
+
 #### Crop (-crop width height)
 Crops the image to the specified width and height. The upper left part of the image is used.
 
@@ -107,6 +112,9 @@ Example: -edge 0.1
 Makes the picture glamourous.
 
 Example: -mine
+
+![image](https://user-images.githubusercontent.com/129896942/230489475-488db054-047f-48ff-9af9-777196426cf8.png)
+
 
 
 
