@@ -42,7 +42,7 @@ C[x][y] =
 
 When processing pixels close to the edge of the image, part of the matrix may extend beyond the image boundary. In this case, we will use the value of the image pixel closest to it as the value of the pixel that goes beyond the border.
 
-### Список базовых фильтров
+### The list of the filters:
 
 #### Crop (-crop width height)
 Crops the image to the specified width and height. The upper left part of the image is used.
