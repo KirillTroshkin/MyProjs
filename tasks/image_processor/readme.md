@@ -62,6 +62,8 @@ Converts the image to grayscale using the formula
 ![encoding](https://latex.codecogs.com/svg.image?R'%20=%20G'%20=%20B'%20=0.299%20R%20&plus;%200%20.587%20G%20&plus;%200%20.%20114%20B)
 
 Example: -gs
+
+
 ![image](https://user-images.githubusercontent.com/129896942/230487268-33e51fe8-7772-40cb-8903-2dca5db792cf.png)
 
 
@@ -70,6 +72,8 @@ Example: -gs
 Converts an image to a negative using the formula
 
 Example: -neg
+
+
 ![image](https://user-images.githubusercontent.com/129896942/230487624-02258dc0-c9e7-427a-a7ef-aaedf8f19de6.png)
 
 
