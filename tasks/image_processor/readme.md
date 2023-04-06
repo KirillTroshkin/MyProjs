@@ -49,8 +49,9 @@ Crops the image to the specified width and height. The upper left part of the im
 
 If the requested width or height exceeds the dimensions of the original image, the available part of the image is given.
 
-Example: -crop 1000 1000
-![image](https://user-images.githubusercontent.com/129896942/230476931-0fc96095-3702-4783-b243-e0c92d3c5fdc.png)
+Example: -crop 500 500
+![image](https://user-images.githubusercontent.com/129896942/230487448-fc73d782-a989-4534-be54-cada3d87f148.png)
+
 
 
 #### Grayscale (-gs)
@@ -59,15 +60,16 @@ Converts the image to grayscale using the formula
 ![encoding](https://latex.codecogs.com/svg.image?R'%20=%20G'%20=%20B'%20=0.299%20R%20&plus;%200%20.587%20G%20&plus;%200%20.%20114%20B)
 
 Example: -gs
-![image](https://user-images.githubusercontent.com/129896942/230477405-50bf9536-8300-47fd-9569-f02068644de2.png)
+![image](https://user-images.githubusercontent.com/129896942/230487268-33e51fe8-7772-40cb-8903-2dca5db792cf.png)
+
 
 
 #### Negative (-neg)
 Converts an image to a negative using the formula
 
-![encoding](https://latex.codecogs.com/svg.image?R'%20=%201%20-%20R,%20G'%20=%201%20-%20G,%20B'%20=%201%20-%20B)
-
 Example: -neg
+![image](https://user-images.githubusercontent.com/129896942/230487624-02258dc0-c9e7-427a-a7ef-aaedf8f19de6.png)
+
 
 
 #### Sharpening (-sharp)
