@@ -2,7 +2,7 @@
 
 This project is a part of learning to code with C++. This is a console app to edit pictures in 24-bit BMP format.
 
-## Формат аргументов командной строки
+## Format of command line arguments
 
 Here is the description of command line arguments:
 {program name} {path to input file} {path to output file}
