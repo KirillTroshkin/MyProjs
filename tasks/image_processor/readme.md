@@ -59,11 +59,16 @@ Converts the image to grayscale using the formula
 ![encoding](https://latex.codecogs.com/svg.image?R'%20=%20G'%20=%20B'%20=0.299%20R%20&plus;%200%20.587%20G%20&plus;%200%20.%20114%20B)
 
 Example: -gs
+![image](https://user-images.githubusercontent.com/129896942/230477405-50bf9536-8300-47fd-9569-f02068644de2.png)
+
 
 #### Negative (-neg)
 Converts an image to a negative using the formula
 
 ![encoding](https://latex.codecogs.com/svg.image?R'%20=%201%20-%20R,%20G'%20=%201%20-%20G,%20B'%20=%201%20-%20B)
+
+Example: -neg
+
 
 #### Sharpening (-sharp)
 Sharpening. It is applied by using a matrix
