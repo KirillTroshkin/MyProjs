@@ -107,9 +107,9 @@ Example: -edge 0.1
 
 
 
-### Pink Wine (-mine)
+### Pinky (-mine)
 
-Makes the picture glamourous.
+Makes the picture glamourous. Was created by me.
 
 Example: -mine
 
