@@ -83,6 +83,12 @@ Sharpening. It is applied by using a matrix
 
 ![encoding](https://latex.codecogs.com/svg.image?%5Cbegin%7Bbmatrix%7D%20&%20-1%20&%20%20%5C%5C-1%20&%205%20&%20-1%20%5C%5C%20&%20-1%20&%20%20%5C%5C%5Cend%7Bbmatrix%7D)
 
+Example: -sharp
+
+![image](https://user-images.githubusercontent.com/129896942/230488644-a6466a98-38d7-4f14-a65d-795da9c97f94.png)
+
+
+
 #### Edge Detection (-edge threshold)
 Border selection. The image is converted to grayscale and a matrix is applied
 
@@ -90,8 +96,17 @@ Border selection. The image is converted to grayscale and a matrix is applied
 
 Pixels with a value exceeding the threshold are colored white, the rest are black.
 
+Example: -edge 0.1
+
+![image](https://user-images.githubusercontent.com/129896942/230488967-d9c5f09a-6700-48da-83ce-fd726875ed66.png)
+
+
 
 ### Pink Wine (-mine)
 
 Makes the picture glamourous.
+
+Example: -mine
+
+
 
