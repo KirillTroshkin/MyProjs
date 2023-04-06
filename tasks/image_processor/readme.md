@@ -50,6 +50,8 @@ Crops the image to the specified width and height. The upper left part of the im
 If the requested width or height exceeds the dimensions of the original image, the available part of the image is given.
 
 Example: -crop 500 500
+
+
 ![image](https://user-images.githubusercontent.com/129896942/230487448-fc73d782-a989-4534-be54-cada3d87f148.png)
 
 
