@@ -15,7 +15,7 @@ Here is the description of command line arguments:
 
 In this example:
 1. The image is downloaded from the file `input.bmp`
-2. The image is cropped to a rectangle 800х600 pixels in the upper left corner.
+2. The image is cropped to a rectangle 800х600 pixels in the upper left corner
 3. The image is converted to grayscale
 4. The resulting image is saved to the file /tmp/output.bmp
 
