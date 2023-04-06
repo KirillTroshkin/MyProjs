@@ -49,10 +49,16 @@ Crops the image to the specified width and height. The upper left part of the im
 
 If the requested width or height exceeds the dimensions of the original image, the available part of the image is given.
 
+Example: -crop 1000 1000
+![image](https://user-images.githubusercontent.com/129896942/230476931-0fc96095-3702-4783-b243-e0c92d3c5fdc.png)
+
+
 #### Grayscale (-gs)
 Converts the image to grayscale using the formula
 
 ![encoding](https://latex.codecogs.com/svg.image?R'%20=%20G'%20=%20B'%20=0.299%20R%20&plus;%200%20.587%20G%20&plus;%200%20.%20114%20B)
+
+Example: -gs
 
 #### Negative (-neg)
 Converts an image to a negative using the formula
