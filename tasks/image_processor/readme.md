@@ -109,7 +109,7 @@ Example: -edge 0.1
 
 ### Pinky (-mine)
 
-Makes the picture glamourous. Was created by me.
+Makes the picture glamourous.
 
 Example: -mine
 
