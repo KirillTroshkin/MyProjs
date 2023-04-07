@@ -9,8 +9,8 @@ The measure of relevance will be the sum of TF-IDF for unique words included in 
 The algorithm is not case-sensitive. A word is considered to be the maximum continuous sequence of characters that satisfies the criterionstd::isalpha(). Lines in the text that do not contain words are ignored.
 
 
-#Realisation
-In this projects class `SearchEngine` was realised.
+# Realisation
+In this projects class `SearchEngine` is realised.
 
 Class has such methods:
 - `BuildIndex` - processes the text and build an index on it
