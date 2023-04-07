@@ -26,7 +26,7 @@ The class which realises the backend of the game 'minesweeper'.
   - a cell  with a flag - `?`
   - open cell without mines - the number from `1` to `8` (corresponds to the number of mines in neighboring cells), instead of 0 is written `.`
 
-## Cell opening algorithm:
+## Cell opening algorithm
 - If the cell contains a mine:
   - all cells open
   - the game ends with a loss
