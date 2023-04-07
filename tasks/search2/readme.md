@@ -1,18 +1,20 @@
-# Поиск 2.0
+# Search
 
-По мотивам задачи [search](../search/readme.md) реализуйте класс `SearchEngine` с аналогичной функциональностью.
+In this project a search engine is implemented. The input is the text, the search query and the result_size number. In this project the result_size of the lines from the text are returned in descending order of relevance. If two lines have the same relevance, they are returned in the same order in which they occur in the text. If there are less than result_size relevant (with relevance > 0) rows, then as many relevant rows as could be found are returned.
 
-Класс должен иметь следующие методы:
-- `BuildIndex` - обработать текст и построить по нему индекс
-- `Search` - выполнить поиск релевантных строк
+# Algorithm
+The measure of relevance will be the sum of TF-IDF for unique words included in the query. A document is a string, a collection of documents is a set of lines of text.
 
-## Реализация
 
-Метод `BuildIndex` может вызываться неоднократно. После вызова этого метода работа идет с новым текстом.
+The algorithm is not case-sensitive. A word is considered to be the maximum continuous sequence of characters that satisfies the criterionstd::isalpha(). Lines in the text that do not contain words are ignored.
 
-Вызовы `Search`, выполненные до индексации, должны возвращать пустой список строк.
 
-Типичный паттерн применения - редкая индексация и частые запросы `Search`.
+#Realisation
+In this projects class `SearchEngine` was realised.
 
-Можно считать, что строка с текстом гарантированно не будет удалена между вызовами `BuildIndex`.
-При этом текст может быть настолько большим, что вторая его копия в память не поместится.
+Class has such methods:
+- `BuildIndex` - processes the text and build an index on it
+- `Search` - searches for relevant strings
+
+A typical application pattern is sparse indexing and frequent `Search` queries.
+
