@@ -1,21 +1,24 @@
-# Нормализация UNIX пути 2.0
+# Normalization of UNIX path 
 
-Реализуйте класс `UnixPath` со следующими свойствами:
+The class `UnixPath` with the following properties is realised:
 
-- Конструктор принимает начальную текущую директорию (абсолютный путь), не обязательно нормализованный
-- Класс имеет методы
-  - `ChangeDirectory` - изменить директорию, может принимать абсолютный или относительный путь, не обязательно нормализованный
-  - `GetAbsolutePath` - вернуть строку, соответствующую нормализованному абсолютному пути текущей директории
-  - `GetRelativePath` - вернуть строку, соответствующую нормализованному относительному (от начальной) пути текущей директории
+- The constructor takes the initial current directory (absolute path), not necessarily normalized
+- The class has methods
+  - `ChangeDirectory` - change the directory, can take an absolute or relative path, not necessarily normalized
+  - `GetAbsolutePath` - return a string corresponding to the normalized absolute path of the current directory
+  - `GetRelativePath` - return a string corresponding to the normalized relative path of the current directory
+  
+  
+  
+Normalization of the path consists in bringing to an absolute path and getting rid of the following elements:
 
-Правила работы с путями аналогичны задаче [unixpath](../unixpath/readme.md).
-Нормализованный относительный путь должен начинаться с `.` или `..`
+/ - at the end of the path
 
-## Реализация
+. - current directory
 
-Подумайте, какие члены класса должны быть публичными, а какие - приватными. Оставьте публичными только необходимый минимум. 
+.. - parent directory
 
-Преобразовывайте путь в строку в момент вызова `Get*Path`, а в полях класса храните более удобное для работы представление.
-Можете реализовать кэширование для результатов работы этих методов.
+// - equivalent to /
 
-Нет гарантии, что строки, передаваемые в методы, будут доступны после вызова метода.
+
+
