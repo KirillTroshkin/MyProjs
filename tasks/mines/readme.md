@@ -27,11 +27,11 @@ The class which realises the backend of the game 'minesweeper'.
   - open cell without mines - the number from `1` to `8` (corresponds to the number of mines in neighboring cells), instead of 0 is written `.`
 
 ## Cell opening algorithm:
-- If the cell contains a mine
+- If the cell contains a mine:
   - all cells open
   - the game ends with a loss
-- If the cell does not contain a mine, but there is a mine in the neighboring cell, then only this cell opens
-- If the cell and its neighbors do not contain mines, the current cell opens
- - the algorithm for opening a cell is applied to all neighbors of the current cell without a flag
+- If the cell does not contain a mine, but there is a mine in the neighboring cell, then only this cell opens.
+- If the cell and its neighbors do not contain mines, the current cell opens.
+ - the algorithm for opening a cell is applied to all neighbors of the current cell without a flag.
 
 The game is considered won when all the cells are open except those on which there are mines.
