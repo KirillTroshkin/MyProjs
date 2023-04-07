@@ -1,51 +1,37 @@
-# Сапёр
+# Minesweeper
 
-Реализуйте класс `Minesweeper` для игры "Сапёр".
+The class which realises the backend of the game 'minesweeper'.
 
-## Структура класса
+## Structure of the class
 
-### Конструкторы
-- принимающий размеры поля и количество мин - расставляет мины на поле случайным образом
-- принимающий размеры поля и список клеток - расставляет мины на указанных клетках
+### Constructors
+- taking the size of the field and the number of mines - places mines on the field randomly
+- taking the size of the field and the list of cells - places mines on the specified cells
 
-### Методы
-- `NewGame` - инициализирует новую игру; имеет два варианта, аналогичных конструкторам
-- `OpenCell` - аналог клика левой кнопкой мыши
-  - если игра выиграна или проиграна, ничего не делает  
-  - если клетка с флажком, ничего не делает
-  - если клетка без флажка, открывает клетку; алгоритм отрытия клеток описан ниже
-- `MarkCell` - аналог клика правой кнопкой мыши
-  - если игра выиграна или проиграна, ничего не делает 
-  - пустую клетку отмечает флажком
-  - с клетки с флажком снимает флажок
-- `GetGameStatus` - возвращает статус игры
-- `GetGameTime` - возвращает время игры в секундах. Время начинает отсчитываться при первом клике в игре и замораживается при выигрыше или проигрыше. До первого клика в игре возвращает 0.
-- `RenderField` - возвращает список строк, соответствующий отрисованному полю. Соответствие элементов символам:
-  - закрытая клетка - `-`
-  - клетка с миной - `*`
-  - клетка с флагом - `?`
-  - открытая клетка без мин - число от `1` до `8` (соответствует количеству мин в соседних клетках), вместо 0 рисуется `.`
+### Methods
+- `NewGame` - initializes a new game; has two options similar to constructors
+- `OpenCell` - analogous to a left-click
+  - if the game is won or lost, does nothing
+  - if a cell has a flag on it, does nothing
+  - if the cell is unchecked, it opens the cell; the algorithm for opening the cells is described below
+- `MarkCell` - analogous to a right-click
+  - if the game is won or lost, does nothing 
+  - marks an empty cell with a flag
+  - removes the flag from the cell with the flag
+- `GetGameStatus` - returns the status of the game
+- `GetGameTime` - returns the game time in seconds. The time starts counting down at the first click in the game and freezes when you win or lose. Before the first click in the game returns 0.
+- `RenderField` - returns a list of rows corresponding to the rendered field. Matching elements to symbols:
+  - closed cell - `-`
+  - a cell with a mine - `*`
+  - a cell  with a flag - `?`
+  - open cell without mines - the number from `1` to `8` (corresponds to the number of mines in neighboring cells), instead of 0 is written `.`
 
-## Алгоритм открытия клетки
-- Если клетка содержит мину
-  - открываются все клетки
-  - игра заканчивается проигрышем
-- Если клетка не содержит мину, но мина есть в соседней клетке, то открывается только эта клетка
-- Если клетка и её соседи не содержат мин
-  - текущая клетка открывается
-  - алгоритм открытия клетки применяется ко всем соседям текущей клетки без флажка
+## Cell opening algorithm:
+- If the cell contains a mine
+ - all cells open
+ - the game ends with a loss
+- If the cell does not contain a mine, but there is a mine in the neighboring cell, then only this cell opens
+- If the cell and its neighbors do not contain mines, the current cell opens
+ - the algorithm for opening a cell is applied to all neighbors of the current cell without a flag
 
-Игра считается выигранной, когда открыты все клетки кроме тех, на которых стоят мины.
-
-## Реализация
-
-Внутреннее представление игры не должно быть завязано на отображение.
-Преобразуйте внутреннее представление в строки только в методе `RenderField`.
-
-Наивный алгоритм случайной расстановки мин может быть неэффективен при количестве мин, близком к общему количеству клеток.
-
-Поле может быть очень большим. Не используйте рекурсивный вызов функций/методов для открытия клеток.
-
-Для работы со временем можно использовать [std::time](https://en.cppreference.com/w/cpp/chrono/c/time).
-
-Можете реализовать простой консольный интерфейс, чтобы протестировать свой код в реальной игре.
+The game is considered won when all the cells are open except those on which there are mines.
