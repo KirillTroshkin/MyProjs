@@ -28,8 +28,8 @@ The class which realises the backend of the game 'minesweeper'.
 
 ## Cell opening algorithm:
 - If the cell contains a mine
- - all cells open
- - the game ends with a loss
+  - all cells open
+  - the game ends with a loss
 - If the cell does not contain a mine, but there is a mine in the neighboring cell, then only this cell opens
 - If the cell and its neighbors do not contain mines, the current cell opens
  - the algorithm for opening a cell is applied to all neighbors of the current cell without a flag
